@@ -18,6 +18,7 @@
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "prettier": "^3.1.0"
+    "prettier": "^3.1.0",
+    "typescript-language-server": "^4.3.1"
   }
 }
