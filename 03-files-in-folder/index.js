@@ -4,7 +4,7 @@ const path = require('path');
 function printFileInfo(file) {
   fs.stat(path.join(file.path, file.name), (err, stats) => {
     if (err) {
-      console.err(err.message);
+      console.error(err.message);
     } else {
       const parsedName = path.parse(file.name);
       const fileName = parsedName.name;

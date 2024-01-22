@@ -8,7 +8,7 @@ function copyDir() {
   function mkdirCallback(err) {
     if (err) {
       if (err.code !== 'EEXIST') {
-        console.err(err.message);
+        console.error(err.message);
         throw err;
       }
     }
@@ -19,7 +19,7 @@ function copyDir() {
     const destPath = path.join(destDir, file);
     fs.copyFile(sourcePath, destPath, (err) => {
       if (err) {
-        console.err(err.message);
+        console.error(err.message);
         throw err;
       }
     });
@@ -27,7 +27,7 @@ function copyDir() {
 
   function readdirCallback(err, files) {
     if (err) {
-      console.err(err.message);
+      console.error(err.message);
       throw err;
     }
     files.forEach((file) => {
