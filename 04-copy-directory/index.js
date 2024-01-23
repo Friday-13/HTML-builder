@@ -35,8 +35,28 @@ function copyDir() {
     });
   }
 
-  fs.mkdir(destDir, mkdirCallback);
-  fs.readdir(sourceDir, readdirCallback);
+  function copyToNewDir() {
+    fs.mkdir(destDir, mkdirCallback);
+    fs.readdir(sourceDir, readdirCallback);
+  }
+  fs.stat(destDir, (err, stats) => {
+    if (err) {
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
+    }
+    if (stats) {
+      if (stats.isDirectory()) {
+        fs.rm(destDir, { recursive: true }, (err) => {
+          if (err) console.log(err.message);
+          copyToNewDir();
+        });
+      }
+    } else {
+      fs.mkdir(destDir, mkdirCallback);
+      fs.readdir(sourceDir, readdirCallback);
+    }
+  });
 }
 
 copyDir();
